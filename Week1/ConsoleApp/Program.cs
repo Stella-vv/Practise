@@ -3,6 +3,7 @@ using ConsoleApp_Order.Models;
 using ConsoleApp_PaintProduct.Models;
 using ConsoleApp_PaintSpecification.Models;
 using ConsoleApp_Brand.Models;
+using ConsoleApp_PaintStore.Models;
 
 
 PaintSpecification paintSpecification1 = new PaintSpecification("yellow", 1);
@@ -23,6 +24,14 @@ product1.DisplayInfo();
 product2.DisplayInfo();
 product3.DisplayInfo();
 product4.DisplayInfo();
+
+
+
+PaintProduct[] storeProducts = { product1, product2, product3, product4 };
+PaintStore store = new PaintStore(storeProducts);
+
+store.StoreAvailability();
+
 
 PaintProduct[] products1 = { product1, product2 };
 PaintProduct[] products2 = { product3, product4 };
