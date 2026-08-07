@@ -8,14 +8,14 @@ using ConsoleApp_PaintProduct.Models;
 
 namespace ConsoleApp_Order.Models
 {
-    public class Order 
+    public class Order
     {
         public readonly DateTime CreatedAt = DateTime.Now;
         public PaintProduct[] Products;
         public int Quantity { get; set; }
         public decimal TotalPrice;
 
-        public Order( PaintProduct[] products, int quantity) 
+        public Order(PaintProduct[] products, int quantity)
         {
             Products = products;
             Quantity = quantity;
@@ -24,10 +24,11 @@ namespace ConsoleApp_Order.Models
 
         public void DisPlay()
         {
-            Console.WriteLine($"Create Time: {CreatedAt}, Quantity: {Quantity}, Total price: {TotalPrice}");
+            Console.WriteLine($"Create Time: {CreatedAt}, Quantity: {Quantity} for each, Total price: {TotalPrice}");
+            Console.WriteLine($"product name:");
             foreach (PaintProduct product in Products)
             {
-                Console.WriteLine($"product name: {product.Name},Create Time: {CreatedAt}, Quantity: {Quantity}");
+                Console.WriteLine(product.Name);
             }
             //Console.WriteLine($"Product name: {Products.Name}, TotalPrice: {TotalPrice}, Create Time: {CreatedAt}, Quantity: {Quantity}");
         }
