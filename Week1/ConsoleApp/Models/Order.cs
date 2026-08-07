@@ -11,25 +11,40 @@ namespace ConsoleApp_Order.Models
     public class Order 
     {
         public readonly DateTime CreatedAt = DateTime.Now;
-        public PaintProduct Product;
+        public PaintProduct[] Products;
         public int Quantity { get; set; }
         public decimal TotalPrice;
 
-        public Order( PaintProduct product, int quantity) 
+        public Order( PaintProduct[] products, int quantity) 
         {
-            Product = product;
+            Products = products;
             Quantity = quantity;
-            TotalPrice = Product.Price * Quantity;
+            //TotalPrice = Products.Price * Quantity;
         }
 
         public void DisPlay()
         {
-            Console.WriteLine($"Product name: {Product.Name}, TotalPrice: {TotalPrice}, Create Time: {CreatedAt}, Quantity: {Quantity}");
+            Console.WriteLine($"Create Time: {CreatedAt}, Quantity: {Quantity}, Total price: {TotalPrice}");
+            foreach (PaintProduct product in Products)
+            {
+                Console.WriteLine($"product name: {product.Name},Create Time: {CreatedAt}, Quantity: {Quantity}");
+            }
+            //Console.WriteLine($"Product name: {Products.Name}, TotalPrice: {TotalPrice}, Create Time: {CreatedAt}, Quantity: {Quantity}");
         }
 
         public void GetTotalPrice()
         {
             Console.WriteLine($"TotalPrice: {TotalPrice}");
+        }
+
+        public void GetTotalOrderPrice()
+        {
+            decimal totalOrderPrice = 0;
+            foreach (PaintProduct product in Products)
+            {
+                totalOrderPrice += product.Price * Quantity;
+            }
+            TotalPrice = totalOrderPrice;
         }
 
     }
