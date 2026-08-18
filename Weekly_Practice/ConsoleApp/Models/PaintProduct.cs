@@ -4,7 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleApp.Enum;
+using ConsoleApp_PaintType.Enum;
 using ConsoleApp_PaintSpecification.Models;
 using ConsoleApp_IBuyable.Interface;
 using ConsoleApp_Brand.Models;
@@ -20,6 +20,7 @@ namespace ConsoleApp_PaintProduct.Models
         public PaintSpecification Specification { get; set; }
         public decimal Price { get; set; }
         public Brand Brand { get; set; }
+        public int ProductId { get; set; }
 
         public PaintProduct(string name, PaintType type, PaintSpecification specification, decimal price, Brand brand)
         {
