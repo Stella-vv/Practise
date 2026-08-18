@@ -1,9 +1,14 @@
-﻿using ConsoleApp.Enum;
+﻿using ConsoleApp_PaintType.Enum;
 using ConsoleApp_Order.Models;
 using ConsoleApp_PaintProduct.Models;
 using ConsoleApp_PaintSpecification.Models;
 using ConsoleApp_Brand.Models;
 using ConsoleApp_PaintStore.Models;
+using ConsoleApp_User.Models;
+using ConsoleApp_Payment.Models;
+using System.Security;
+using ConsoleApp_PaymentStatus.Enum;
+using ConsoleApp_PaymentMethod.Enum;
 
 
 PaintSpecification paintSpecification1 = new PaintSpecification("yellow", 1);
@@ -27,14 +32,29 @@ product4.DisplayInfo();
 
 
 
-PaintProduct[] storeProducts = { product1, product2, product3, product4 };
+List<PaintProduct> storeProducts = new List<PaintProduct>
+{
+  product1, 
+  product2,
+  product3, 
+  product4
+};
 PaintStore store = new PaintStore(storeProducts);
 
 store.StoreAvailability();
 
 
-PaintProduct[] products1 = { product1, product2 };
-PaintProduct[] products2 = { product3, product4 };
+List<PaintProduct> products1 = new List<PaintProduct>
+{
+  product1, 
+  product2
+};
+
+List<PaintProduct> products2 = new List<PaintProduct>
+{
+  product3, 
+  product4
+};
 
 Order order1 = new Order(products1, 3);
 Order order2 = new Order(products2, 4);
@@ -44,3 +64,28 @@ order2.GetTotalOrderPrice();
 
 order1.DisPlay();
 order2.DisPlay();
+
+order1.GetMostExpensiveProduct();
+order2.GetMostExpensiveProduct();
+
+order1.FindProduct(5, 50);
+order2.TypeTotalPrice();
+
+User user1 = new User("stella", "123@163.com");
+User user2 = new User("Adrian", "321@gmail.com");
+
+user1.Orders.Add(order1);
+user2.Orders.Add(order2);
+
+
+Payment payment1 = new Payment(PaymentStatus.Pending, PaymentMethod.Alipay, order1, user1);
+Payment payment2 = new Payment(PaymentStatus.Success, PaymentMethod.CreditCard, order2, user2);
+
+user1.Payments.Add(payment1);
+user2.Payments.Add(payment2);
+
+user1.FindMostExpensiveOrder();
+user1.FindLatestOrder();
+user2.FindCheapestPayment();
+user2.FindPaymentOver10();
+user2.FindLatestPayment();

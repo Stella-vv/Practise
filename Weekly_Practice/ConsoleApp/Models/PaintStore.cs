@@ -10,9 +10,10 @@ namespace ConsoleApp_PaintStore.Models
 {
     public class PaintStore
     {
-        public PaintProduct[] Products;
+        public List<PaintProduct> Products;
+        
 
-        public PaintStore(PaintProduct[] products)
+        public PaintStore(List<PaintProduct> products)
         {
             Products = products;
         }
